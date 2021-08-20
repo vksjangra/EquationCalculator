@@ -1,0 +1,114 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Quadratic
+{% endblock %}
+
+{% block main %}
+<div class="container">
+    <div class="jumbotron mt-4 p-4">
+        <h1><b>Quadratic Equation</b></h1>
+        <p class="lead"></p>
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Equation Type
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="#quad1">Whole/Decimal Coefficients</a>
+                <a class="dropdown-item" href="#quad2">Fractional Coefficients</a>
+            </div>
+        </div>
+        <hr class="my-4">
+        <p></p>
+        
+        <!-- Dynamically generate proper equation to display from given inputs -->
+        <div id="app"></div>
+        <div style="text-align: center; display: {{ display }};" id="quad_sol">
+            <h5 class="mt-5" style="text-align: left;">For Equation:</h5>
+            <h4 class="mt-2"> 
+                <b>
+                {% if inputs['a'] != 0 %}
+                    {% if inputs['e'] != 1 %}
+                        `{{ inputs['a'] }}/{{inputs['e']}}x^2`
+                    {% else %}
+                        `{{ inputs['a'] }}x^2`
+                    {% endif %}
+
+                    {% if inputs['b'] != 0 %}
+                        {% if inputs['f'] != 1 %}    
+                            {% if inputs['b'] < 0 %}
+                                {% set b = -inputs['b'] %} 
+                                `- {{ b }}/{{inputs['f']}}x`
+                            {% else %}
+                                `+ {{ inputs['b'] }}/{{ inputs['f'] }}x`
+                            {% endif %}
+                        {% else %}
+                            {% if inputs['b'] < 0 %}
+                                {% set b = -inputs['b'] %}
+                                `- {{ b }}x`
+                            {% else %}
+                                `+ {{ inputs['b'] }}x`
+                            {% endif %}
+                        {% endif %}
+                    {% endif %}
+
+                    {% if inputs['c'] != 0 %}
+                        {% if inputs['g'] != 1 %}    
+                            {% if inputs['c'] < 0 %}
+                                {% set c = -inputs['c'] %} 
+                                `- {{ c }}/{{inputs['g']}}`
+                            {% else %}
+                                `+ {{ inputs['c'] }}/{{ inputs['g'] }}`
+                            {% endif %}
+                        {% else %}
+                            {% if inputs['c'] < 0 %}
+                                {% set c = -inputs['c'] %}
+                                `- {{ c }}`
+                            {% else %}
+                                `+ {{ inputs['c'] }}`
+                            {% endif %}
+                        {% endif %}
+                    {% endif %}
+                    `= 0`
+
+                {% elif inputs['b'] != 0 %}
+                    {% if inputs['f'] != 1 %}    
+                        {% set b = inputs['b'] %} 
+                        `{{ b }}/{{inputs['f']}}x`
+                    {% else %}
+                        {% set b = inputs['b'] %}
+                        `{{ b }}x`
+                    {% endif %}
+
+                    {% if inputs['c'] != 0 %}
+                        {% if inputs['g'] != 1 %}    
+                            {% if inputs['c'] < 0 %}
+                                {% set c = -inputs['c'] %} 
+                                `- {{ c }}/{{inputs['g']}}`
+                            {% else %}
+                                `+ {{ inputs['c'] }}/{{ inputs['g'] }}`
+                            {% endif %}
+                        {% else %}
+                            {% if inputs['c'] < 0 %}
+                                {% set c = -inputs['c'] %}
+                                `- {{ c }}`
+                            {% else %}
+                                `+ {{ inputs['c'] }}`
+                            {% endif %}
+                        {% endif %}
+                    {% endif %}
+                    `= 0`
+                {% endif %}
+                </b>
+            </h4>
+
+            <!-- Display the solution strings in the dict solutions -->
+            <div class="mt-5">
+                {% for key in solutions %}
+                    <h3 class="m-3 p-4 bg-light"><b>`{{ key }} = {{ solutions[key] }}`</b></h3>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
