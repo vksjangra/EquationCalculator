@@ -13,4 +13,4 @@ The input equation is displayed in the proper mathematical format with its solut
 MathJax is a JavaScript display engine for mathematics that works in all browsers. It is used to display the input equation in the proper mathematical form. It works with ASCII math and is very easy to use. Version 3 doesn't support ASCII maths inputs yet and hence version 2.7 is used instead.
 
 ##### Numpy
-Numpy is a library which provides mathemical operations and oprations with great accuracy which is more than sufficient for this project. Basic oprations sqrt and cbrt, basic functions cos and arccos and constant pi are used from Numpy. 
+Numpy is a library which provides mathemical operations with great accuracy which is more than sufficient for this project. Basic oprations sqrt and cbrt, basic functions cos and arccos and constant pi are used from Numpy in this project.
